@@ -1,27 +1,31 @@
-<p id="notice"><%= notice %></p>
-
+<div class="container-fluid">
 <h1>Groups</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
+      <th scope="col">Group Name</th>
+      <th scope="col">Detail View</th>
+      <th scope="col">Edit Group</th>
+      <th scope="col">Delete Group</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.title %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @groups.each do |group| %>
+    <tr>
+      <th scope="row"><%= group.title %></th>
+      <td><%= link_to 'Detail', group, class:"btn btn-primary"%></td>
+      <td><%= link_to 'Edit', edit_group_path(group), class:"btn btn-primary" %></td>
+      <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+    </tr>
+  <% end %>
   </tbody>
+
 </table>
+
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+<%= link_to 'New Group', new_group_path, class:"btn btn-primary" %>
+
+</div>

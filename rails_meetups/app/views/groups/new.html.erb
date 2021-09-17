@@ -1,5 +1,6 @@
+<div class="container">
 <h1>New Group</h1>
+<%= render 'form', group: @group, class:"btn btn-primary" %>
 
-<%= render 'form', group: @group %>
-
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Back', groups_path, class:"btn btn-primary" %>
+</div>
