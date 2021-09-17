@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #7c7f53;
+  color: white;
+  text-align: center;
+}
+
+ul.nav li.active a {
+  color: #5c5c2b !important;
+}
+
+ul.nav li a,
+ul.nav li a:visited {
+  color: #7a5f14 !important;
+}
+
+ul.nav li a:hover,
+ul.nav li a:active {
+  color: #55524d !important;
+}
+
+ul.nav li.active a {
+  color: #5c5c2b !important;
+}
+
+a {
+  color: #55524d;
+}
+a:hover {
+  color: #7a5f14;
+}
+.navbar ul li a:hover {
+  color: #7a5f14;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #8064a2 !important;
+}
