@@ -11,6 +11,7 @@
 ## use project:
 * default views are for unauthenticated user (no CRUD functionality)
 * admin page & csv upload at http://localhost:8000/accounts/admin/ (or click link in footer)
-* register & login to access file upload & CRUD functionality 
+* register & login to access file upload & CRUD functionality
+    * use meetup.csv as sample data
     * show: http://localhost:8000/
     * index: http://localhost:8000/group_info
