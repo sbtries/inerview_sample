@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <form method="POST" action="{% url 'admin' %}" class="container-fluid p-3">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlFile1">CSV here</label>
+      <input name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {% if message %}
+    {{message}}
+    {% endif %}
+  </form>
+
+
+{% else %}
+  <p>You are not authorized to view this content</p>
+  <p> admin <a href="{% url 'login' %}">login</a></p>
+  <p> admin <a href="{% url 'signup' %}">register</a></p>
+
+{% endif %}
+{% endblock %}
