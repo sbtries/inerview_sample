@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_190211) do
+ActiveRecord::Schema.define(version: 2021_09_17_201913) do
 
   create_table "group_members", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_09_17_190211) do
   end
 
   create_table "groups", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
