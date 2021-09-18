@@ -1,20 +1,21 @@
 from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
-from .models import User, Group
+from .models import User, Group, GroupMember
 from django.views.generic.base import View
 
 # show: displays Users and their roles
 class IndexView(ListView):
-    model = User
+    model = GroupMember
     template_name = 'index.html'
-    context_object_name = 'users'
+    context_object_name = 'groupmembers'
 
 #index: should display the organizer(s)
 class UpdateView(View):
     def get(self, request):
         groups = Group.objects.all()
         users = User.objects.all()
-        return render(request, 'update.html', {'groups': groups, 'users': users})
+        members = GroupMember.objects.all()
+        return render(request, 'update.html', {'groups': groups, 'users': users, 'members':members})
 
     def post(self, request):
         groups = Group.objects.all()
@@ -28,9 +29,9 @@ class NewGroup(View):
     def post(self, request):
         new_group = Group.objects.create(title=request.POST['title'])
         user = User.objects.get(id=request.POST['Leader'])
-        user.role = 'Leader'
-        user.save()
-        new_group.member.add(user)
+        print(user)
+        print(new_group)
+        leader = GroupMember.objects.create(member=user, group=new_group, role='Organizer')
         new_group.save()
         return redirect('update')
 

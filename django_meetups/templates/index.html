@@ -5,28 +5,20 @@
 
 {% block content %}
 <div class="container">
-  <h3>Groups: </h3>
+  <h3>Roster: </h3>
 
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Group</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Role</th>
+          <th scope="col">All members</th>
         </tr>
       </thead>
       <tbody>
-        {% for user in users %}
+        {% for member in groupmembers %}
         <tr>
           <th scope="row">
-            {% for group in user.group.all %}
-              {{ group.title }}
-            {% endfor %}
+            {{member}}
           </th>
-          <td>{{user.lastName}}</td>
-          <td>{{user.firstName}}</td>
-          <td>{{user.role}}</td>
         </tr>
         {% endfor%}
       </tbody>

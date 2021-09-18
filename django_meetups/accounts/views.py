@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.views.generic.base import View
 from .forms import CustomUserCreationForm
-from groups.models import Group, User
+from groups.models import Group, User, GroupMember
 import csv
 
 class SignUpView(CreateView):
@@ -19,6 +19,7 @@ class AdminView(View):
 
     def post(self, request, *args, **kwargs):
         file = request.POST['file']
+
         with open(file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
@@ -54,14 +55,20 @@ class AdminView(View):
                     try: 
                         role = row[3]
                     except IndexError:
-                        role = None
+                        role = 'Participant'
                         
                     #create/save data:
                     if valid == True:
-                        new_user = User.objects.create(firstName = firstName, lastName = lastName, role = role)
-                        user_group = Group.objects.get(title=group).id
-                        new_user.group.add(user_group)
+                        if not User.objects.filter(firstName=firstName, lastName=lastName).exists():
+                            new_user = User.objects.create(firstName = firstName, lastName = lastName)
+                        else: 
+                            new_user= User.objects.filter(firstName=firstName, lastName=lastName).first()
+                        user_group_id = Group.objects.get(title=group).id
+                        user_group = Group.objects.get(title=group)
+
                         new_user.save()
+
+                        new_group_member = GroupMember.objects.create(group=user_group, member=new_user, role=role)
                     else: 
                         message = 'please submit a CSV with first names, last names, and groups'
                         return render(request, 'admin.html', {'message': message})

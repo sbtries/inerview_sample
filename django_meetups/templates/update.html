@@ -26,9 +26,10 @@
               {{ group.title }}
           </th>
           <td>
-            {% for member in group.member.all %}
-              {% if member.role == Leader %}
-                {{ member.firstName }}
+            {% for member in group.member_group.all %}
+            {{member}}
+              {% if member.role == Organizer %}
+              {{ member }} 2
               {% endif %}
             {% endfor %}
           </td>
@@ -40,8 +41,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="type" value="remove">
                 <select name="member">
-                  {% for member in group.member.all %}
-                  <option  value={{member.id}}>{{member.firstName}}, {{member.lastName}}</option>
+                  {% for member in group.member_group.all %}
+                  <option  value={{member.id}}>{{member}}</option>
                   {% endfor %}
                 </select>
                 <button type=submit >remove member</button>
