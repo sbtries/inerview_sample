@@ -26,7 +26,7 @@
               {{ group.title }}
           </th>
           <td>
-            {% for member in group.member.all %}
+            {% for member in group.member_group.all %}
               {% if member.role == Organizer %}
                 {{ member.firstName }}
               {% endif %}
