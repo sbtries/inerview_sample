@@ -1,5 +1,6 @@
-First Name, Last Name, Group, Role
-Betty, Bolete, Finders, Leader
-Anna, Amanita, Finders, Follower
-John, Conk, Finders
-Greg, Fiddlehead, Hikers, Leader
+Betty,Bolete,Finders,Organizer
+Anna,Amanita,Finders,Presenter
+John,Conk,Finders,Participant
+Greg,Fiddlehead,Hikers,Organizer
+Betty,Bolete,Hikers,Participant
+Greg,Fiddlehead,Bandanas,Participant
