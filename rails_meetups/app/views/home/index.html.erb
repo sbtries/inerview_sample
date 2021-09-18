@@ -2,19 +2,14 @@
 
 <main class="container-fluid p-3">
 <% if account_signed_in? %>
+<div class="container-fluid p-3">
 <h3>Load CSV</h3>
-  <%= form_tag home_import_path, multipart:true do%>
-    <%= file_field_tag :file%>
-    <%= submit_tag "Import CSV" %>
+  <%= form_tag home_import_path, class: "form-group", multipart:true do%>
+    <%= file_field_tag :file, class:"form-control-file" %>
+    <br>
+    <%= submit_tag "Import CSV", class:"btn btn-primary"%>
+  </div>
   <% end %>
-
-  <form method="POST" action="#" class="container-fluid p-3">
-    <div class="form-group">
-      <label for="exampleFormControlFile1">CSV here</label>
-      <input name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
 
 <% else %>
   <p> Welcome to Meetups  </p>

@@ -5,10 +5,10 @@ data = []
 # create list of lists, headers is data[0]
 CSV.foreach('meetups.csv') do |row|
     data << row
-    user= User.create(first:name: row[0], last_name: row[1])
+    # user= User.create(first:name: row[0], last_name: row[1])
 end
 
-
+puts data[1]
 # correlation to rails db??
 # @user= User.create(first:name: row[0], last_name: row[1])
 # @group_member = GroupMember.create()
