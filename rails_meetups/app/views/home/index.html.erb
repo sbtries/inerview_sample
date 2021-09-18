@@ -2,6 +2,12 @@
 
 <main class="container-fluid p-3">
 <% if account_signed_in? %>
+<h3>Load CSV</h3>
+  <%= form_tag home_import_path, multipart:true do%>
+    <%= file_field_tag :file%>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+
   <form method="POST" action="#" class="container-fluid p-3">
     <div class="form-group">
       <label for="exampleFormControlFile1">CSV here</label>

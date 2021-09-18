@@ -5,6 +5,9 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
   end
+  #import data for models 
+  def import
+  end
 
   # GET /groups/1 or /groups/1.json
   def show

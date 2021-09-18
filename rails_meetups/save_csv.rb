@@ -5,7 +5,16 @@ data = []
 # create list of lists, headers is data[0]
 CSV.foreach('meetups.csv') do |row|
     data << row
+    user= User.create(first:name: row[0], last_name: row[1])
 end
+
+
+# correlation to rails db??
+# @user= User.create(first:name: row[0], last_name: row[1])
+# @group_member = GroupMember.create()
+# find group (row[3]), if no group:
+    # @group = Group.create()
+
 
 #seems excessive, shouldn't need headers in arrays? 
 # headers = nil
@@ -26,11 +35,5 @@ end
     # role, group = member
     
 
-print data
+# print data
 
-
-# correlation to rails db??
-# @user= User.create(first:name: row[0], last_name: row[1])
-# @group_member = GroupMember.create()
-# find group (row[3]), if no group:
-    # @group = Group.create()
