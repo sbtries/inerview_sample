@@ -59,8 +59,10 @@ class AdminView(View):
                         
                     #create/save data:
                     if valid == True:
-                        new_user = User.objects.create(firstName = firstName, lastName = lastName)
-                        
+                        if not User.objects.filter(firstName=firstName, lastName=lastName).exists():
+                            new_user = User.objects.create(firstName = firstName, lastName = lastName)
+                        else: 
+                            new_user= User.objects.filter(firstName=firstName, lastName=lastName).first()
                         user_group_id = Group.objects.get(title=group).id
                         user_group = Group.objects.get(title=group)
 
