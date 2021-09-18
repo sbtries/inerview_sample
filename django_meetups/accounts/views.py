@@ -55,7 +55,7 @@ class AdminView(View):
                     try: 
                         role = row[3]
                     except IndexError:
-                        role = None
+                        role = 'Participant'
                         
                     #create/save data:
                     if valid == True:
@@ -64,7 +64,6 @@ class AdminView(View):
                         user_group_id = Group.objects.get(title=group).id
                         user_group = Group.objects.get(title=group)
 
-                        new_user.group.add(user_group_id)
                         new_user.save()
 
                         new_group_member = GroupMember.objects.create(group=user_group, member=new_user, role=role)

@@ -5,9 +5,9 @@ from django.views.generic.base import View
 
 # show: displays Users and their roles
 class IndexView(ListView):
-    model = User
+    model = GroupMember
     template_name = 'index.html'
-    context_object_name = 'users'
+    context_object_name = 'groupmembers'
 
 #index: should display the organizer(s)
 class UpdateView(View):
@@ -32,7 +32,6 @@ class NewGroup(View):
         print(user)
         print(new_group)
         leader = GroupMember.objects.create(member=user, group=new_group, role='Organizer')
-        new_group.member.add(user)
         new_group.save()
         return redirect('update')
 
