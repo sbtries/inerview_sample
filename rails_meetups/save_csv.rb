@@ -2,14 +2,15 @@ require 'csv'
 
 data = []
 
-# create list of lists
+# create list of lists, headers is data[0]
 CSV.foreach('meetups.csv') do |row|
     data << row
 end
 
+#seems excessive, shouldn't need headers in arrays? 
 # headers = nil
 # CSV.foreach(('meetups.csv'), headers: true, col_sep: ",") do |row|
-#     puts row[0]
+#     data << row
 # end 
 
 # data = CSV.parse('meetups.csv', :headers => true)
@@ -26,3 +27,10 @@ end
     
 
 print data
+
+
+# correlation to rails db??
+# @user= User.create(first:name: row[0], last_name: row[1])
+# @group_member = GroupMember.create()
+# find group (row[3]), if no group:
+    # @group = Group.create()
