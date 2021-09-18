@@ -19,6 +19,7 @@ class AdminView(View):
 
     def post(self, request, *args, **kwargs):
         file = request.POST['file']
+
         with open(file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
@@ -58,10 +59,13 @@ class AdminView(View):
                         
                     #create/save data:
                     if valid == True:
-                        new_user = User.objects.create(firstName = firstName, lastName = lastName, role = role)
+                        new_user = User.objects.create(firstName = firstName, lastName = lastName)
+                        
                         user_group = Group.objects.get(title=group).id
                         new_user.group.add(user_group)
                         new_user.save()
+
+                        new_group_member = GroupMember.objects.create(group=user_group, member=new_user, role=role)
                     else: 
                         message = 'please submit a CSV with first names, last names, and groups'
                         return render(request, 'admin.html', {'message': message})
