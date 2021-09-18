@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.views.generic.base import View
 from .forms import CustomUserCreationForm
-from groups.models import Group, User
+from groups.models import Group, User, GroupMember
 import csv
 
 class SignUpView(CreateView):
@@ -61,8 +61,10 @@ class AdminView(View):
                     if valid == True:
                         new_user = User.objects.create(firstName = firstName, lastName = lastName)
                         
-                        user_group = Group.objects.get(title=group).id
-                        new_user.group.add(user_group)
+                        user_group_id = Group.objects.get(title=group).id
+                        user_group = Group.objects.get(title=group)
+
+                        new_user.group.add(user_group_id)
                         new_user.save()
 
                         new_group_member = GroupMember.objects.create(group=user_group, member=new_user, role=role)
