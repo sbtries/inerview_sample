@@ -27,8 +27,11 @@
           </th>
           <td>
             {% for member in group.member_group.all %}
+            {{ member.role }}
               {% if member.role == Organizer %}
-                {{ member.firstName }}
+              found
+              {{ member.member_user}}
+              {{ member.member_user.all }} 
               {% endif %}
             {% endfor %}
           </td>
