@@ -5,6 +5,8 @@
   <thead>
     <tr>
       <th scope="col">Group Name</th>
+      <th scope="col">Group ID</th>
+
       <th scope="col">Detail View</th>
       <th scope="col">Edit Group</th>
       <th scope="col">Delete Group</th>
@@ -14,6 +16,9 @@
   <% @groups.each do |group| %>
     <tr>
       <th scope="row"><%= group.title %></th>
+      
+      <td><%= group.id %>
+      </td>
       <td><%= link_to 'Detail', group, class:"btn btn-primary"%></td>
       <td><%= link_to 'Edit', edit_group_path(group), class:"btn btn-primary" %></td>
       <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>

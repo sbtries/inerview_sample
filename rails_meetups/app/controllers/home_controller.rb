@@ -17,16 +17,12 @@ class HomeController < ApplicationController
         group = Group.create(title: row[2])
       end
       if User.where(first_name: row[0]).empty?
-        # puts row[0]
         user = User.create(first_name: row[0], last_name: row[1])
         puts user, 'IF'
       end
       user = User.where(first_name: row[0]).first
       group = Group.where(title: row[2]).first
       GroupMember.create(role: row[3], user_id: user.id, group_id: group.id)
-      # puts user
-      # puts group
-
     end
   
   end

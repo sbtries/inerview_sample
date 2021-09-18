@@ -3,7 +3,11 @@
 <div class="jumbotron">
   <h1 class="display-4">  <%= @group.title %></h1>
   <hr class="my-4">
-  <p>put members here matyvbbe?</p>
+  <p>Members:  </p>
+  <% @users.each do |user| %>
+  <li> <%= user[:first_name]%> <%= user[:last_name]%>, Role: <%= user[:role]%></li>
+  <% end %>
+  <br>
   <p class="lead">
 <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-primary" %> 
 <%= link_to 'Back', groups_path, class:"btn btn-primary" %>  </p>
