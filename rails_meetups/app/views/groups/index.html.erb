@@ -16,8 +16,11 @@
   <% @groups.each do |group| %>
     <tr>
       <th scope="row"><%= group.title %></th>
-      
-      <td><%= group.id %>
+      <td><% group.group_member.all.each do |member| %>
+        <% @users.each do |user| %>
+        <% if user.id == member.user_id %><li>  <%= user.first_name%>: <%= member.role %></li><% end %>
+        <% end %>
+      <% end %>
       </td>
       <td><%= link_to 'Detail', group, class:"btn btn-primary"%></td>
       <td><%= link_to 'Edit', edit_group_path(group), class:"btn btn-primary" %></td>

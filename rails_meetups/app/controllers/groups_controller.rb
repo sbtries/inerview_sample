@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.all
+    @users = User.all
 
   end
   #import data for models 
@@ -13,11 +14,12 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    
+
     @users = []
+
     # get all members belonging to group
     members = GroupMember.where(group_id: params[:id])
-    # for each member, get associated user & create hash (dict)
+    # for each member get associated user & create hash (dict)
     # the push dict to list for view/template
     members.each do |member|
       db_user = User.where(id: member.user_id).first
@@ -31,8 +33,7 @@ class GroupsController < ApplicationController
     @members = GroupMember.where(group_id: params[:id])
 
     puts @users
-    # organizer = GroupMember.where(group_id: params[:id], role: 'Organizer').first
-    # @user = User.where(id: organizer.user_id).first
+
   end
 
   # GET /groups/new
