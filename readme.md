@@ -1,5 +1,12 @@
+# Rails Meetups: 
+* rails s
+* create user & login: http://localhost:3000/home/admin 
+* import csv at root, http://localhost:3000/
+* groups index at http://localhost:3000/groups
+* groups show at http://localhost:3000/groups/:id
 
-# Django Meetups
+
+# Django Meetups:
 
 ## Run project:
 * (create shell or env of your choice)
