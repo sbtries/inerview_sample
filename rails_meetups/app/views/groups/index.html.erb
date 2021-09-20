@@ -18,7 +18,10 @@
       <th scope="row"><%= group.title %></th>
       <td><% group.group_member.all.each do |member| %>
         <% @users.each do |user| %>
-        <% if user.id == member.user_id %><li>  <%= user.first_name%>: <%= member.role %></li><% end %>
+        <% if user.id == member.user_id %>
+        <% if member.role == 'Organizer' %>
+        <li>  <%= user.first_name%>: <%= member.role %></li><% end %>
+        <% end %>
         <% end %>
       <% end %>
       </td>

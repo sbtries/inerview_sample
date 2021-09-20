@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @users = User.all
-
   end
   #import data for models 
   def import
