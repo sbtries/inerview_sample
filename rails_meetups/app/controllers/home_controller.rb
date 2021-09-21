@@ -18,16 +18,20 @@ class HomeController < ApplicationController
       end
       if User.where(first_name: row[0]).empty?
         user = User.create(first_name: row[0], last_name: row[1])
-        puts user, 'IF'
       end
       user = User.where(first_name: row[0]).first
       group = Group.where(title: row[2]).first
+
       if GroupMember.where(user_id: user.id, group_id: group.id).empty?
+        puts 'IF'
         GroupMember.create(role: row[3], user_id: user.id, group_id: group.id)
-      # else
-        #change role in existing member
-        # GroupMember.where(user_id: user.id, group_id: group.id).first()
-      
+
+      else
+        # change role in existing member, not currently working 
+        puts 'ELSE'
+        GroupMember.where(user_id: user.id, group_id: group.id).first().update_attribute(:role, row[3])
+
+      end
     end
   
   end
