@@ -63,15 +63,15 @@ class AdminView(View):
                         new_user= User.objects.filter(firstName=firstName, lastName=lastName).first()
                     user_group_id = Group.objects.get(title=group).id
                     user_group = Group.objects.get(title=group)
-
                     new_user.save()
-                    # check if group member exists and has new role: 
-                    # if GroupMember.objects.filter(member = new_user.id, group = user_group_id).exists():
-                    #     user_role = GroupMember.objects.filter(member = new_user.id, group = user_group_id)
-                    #     user_role(role = row[3])
-                    #     user_role.save()
 
-                    #     new_group_member = GroupMember.objects.create(group=user_group, member=new_user, role=role)
+                    #check if member already exists & update role
+                    if GroupMember.objects.filter(member = new_user.id, group = user_group_id).exists():
+                        member = GroupMember.objects.filter(member = new_user.id, group = user_group_id)
+                        member.role = role
+                    else: 
+                        GroupMember.objects.create(member = new_user, group = user_group, role=role) 
+
                 else: 
                     message = 'please submit a CSV with first names, last names, and groups'
                     return render(request, 'admin.html', {'message': message})
