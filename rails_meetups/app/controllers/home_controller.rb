@@ -10,8 +10,10 @@ class HomeController < ApplicationController
     data = []
     lines = 0
     user = []
-    
-    CSV.foreach('meetups.csv') do |row| #hardcoded file, change to get input from form
+
+    file = params[:file]
+
+    CSV.foreach(file.path) do |row|
       lines = lines + 1
       data << row
       if Group.where(title: row[2]).empty?
