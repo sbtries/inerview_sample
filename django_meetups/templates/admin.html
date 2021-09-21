@@ -6,7 +6,7 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <form method="POST" action="{% url 'admin' %}" class="container-fluid p-3">
+  <form method="POST" action="{% url 'admin' %}" class="container-fluid p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label for="exampleFormControlFile1">CSV here</label>
