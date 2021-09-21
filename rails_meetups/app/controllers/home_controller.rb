@@ -27,9 +27,10 @@ class HomeController < ApplicationController
         GroupMember.create(role: row[3], user_id: user.id, group_id: group.id)
 
       else
-        # change role in existing member, not currently working 
+        # change role in existing member
         puts 'ELSE'
-        GroupMember.where(user_id: user.id, group_id: group.id).first().update_attribute(:role, row[3])
+          member = GroupMember.where(user_id: user.id, group_id: group.id).first()
+          member.update_attribute(:role, row[3])
 
       end
     end
