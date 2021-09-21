@@ -22,7 +22,12 @@ class HomeController < ApplicationController
       end
       user = User.where(first_name: row[0]).first
       group = Group.where(title: row[2]).first
-      GroupMember.create(role: row[3], user_id: user.id, group_id: group.id)
+      if GroupMember.where(user_id: user.id, group_id: group.id).empty?
+        GroupMember.create(role: row[3], user_id: user.id, group_id: group.id)
+      # else
+        #change role in existing member
+        # GroupMember.where(user_id: user.id, group_id: group.id).first()
+      
     end
   
   end
