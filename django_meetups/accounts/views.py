@@ -25,7 +25,7 @@ class AdminView(View):
         data_set = file.read().decode('UTF-8')
         io_string = io.StringIO(data_set)
         valid = True
-        for row in csv.reader(io_string, delimiter=',', quotechar="|"):
+        for row in csv.reader(io_string, delimiter=','):
             if line_count == 0:
                 line_count += 1
             else:
@@ -65,12 +65,13 @@ class AdminView(View):
                     user_group = Group.objects.get(title=group)
                     new_user.save()
 
-                    #check if member already exists & update role
-                    #if GroupMember.objects.filter(member = new_user.id, group = user_group_id).exists():
-                    #    member = GroupMember.objects.filter(member = new_user.id, group = user_group_id)
-                    #    member.role = role
-                    #else: 
-                    #   GroupMember.objects.create(member = new_user, group = user_group, role=role) 
+                    # check if member already exists & update role
+                    if GroupMember.objects.filter(member = new_user.id, group = user_group_id).exists():
+                       member = GroupMember.objects.filter(member = new_user.id, group = user_group_id).first()
+                       member.role = role
+                       member.save()
+                    else: 
+                      GroupMember.objects.create(member = new_user, group = user_group, role=role) 
 
                 else: 
                     message = 'please submit a CSV with first names, last names, and groups'
